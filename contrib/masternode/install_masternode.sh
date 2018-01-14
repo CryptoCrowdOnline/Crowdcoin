@@ -1,5 +1,5 @@
 #/bin/bash
-# This script  is a derivative work of the code from the following projects:
+# This script is a derivative work of the code from the following projects:
 # Galactrum - https://www.galactrum.org/
 # Innova Coin - https://innovacoin.info/
 clear
@@ -113,7 +113,11 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 		nano \
 		htop \
 		autoconf \
-		libminiupnpc-dev 
+		libminiupnpc-dev \
+		python-virtualenv \
+		virtualenv \
+		rpl \
+		pwgen
 		
 	
 	# Install fail2ban if needed
@@ -167,7 +171,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	./crowdcoin-cli stop
 	sleep 10
 	rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
-	sudo apt-get install -y pwgen
 	rpcpass=`pwgen -1 20 -n`
 	cd /root/.crowdcoincore 
 	echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}\nrpcallowip=127.0.0.1\nrpcthreads=8\nlisten=1\nserver=1\ndaemon=1\nstaking=0\ndiscover=1\nexternalip=${ip}:12875\nmasternode=1\nmasternodeprivkey=${key}\naddnode=84.17.23.43:12875\naddnode=18.220.138.90:12875\naddnode=86.57.164.166:12875\naddnode=86.57.164.146:12875\naddnode=18.217.78.145:12875\naddnode=23.92.30.230:12875\naddnode=35.190.182.68:12875\naddnode=80.209.236.4:12875\naddnode=91.201.40.89:12875" > /root/.crowdcoincore/crowdcoin.conf
@@ -176,17 +179,13 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	echo && echo "Installing Sentinel..."
 	sleep 3
 	cd /root/.crowdcoincore
-	sudo apt-get update -y 
-	sudo apt-get -y install python-virtualenv -y
 	git clone https://github.com/crowdcoinChain/sentinelLinux.git && cd sentinelLinux
 	export LC_ALL=C
-	sudo apt install virtualenv -y
 	virtualenv ./venv
 	./venv/bin/pip install -r requirements.txt
 	echo  "* * * * * cd /root/.crowdcoincore/sentinelLinux && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1" >> mycron
 	crontab mycron
 	rm mycron
-	sudo apt-get install rpl
 	rpl dash_conf=/home/YOURUSERNAME/.crowdcoincore/crowdcoin.conf dash_conf=/root/.crowdcoincore/crowdcoin.conf sentinel.conf
 	
 	#Start CrowdCoin Daemon
