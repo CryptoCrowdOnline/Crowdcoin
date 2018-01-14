@@ -188,6 +188,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	rpl dash_conf=/home/YOURUSERNAME/.crowdcoincore/crowdcoin.conf dash_conf=/root/.crowdcoincore/crowdcoin.conf sentinel.conf
 	
 	#Start CrowdCoin Daemon
+	sleep 60
 	cd /root/Crowdcoin/src
 	./crowdcoind -daemon
 	cd ~
