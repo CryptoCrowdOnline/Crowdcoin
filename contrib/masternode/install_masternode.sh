@@ -39,9 +39,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	echo && sleep 3
 	read -e -p "Add swap space? (Recommended) [Y/n] : " add_swap
 	if [[ ("$add_swap" == "y" || "$add_swap" == "Y" || "$add_swap" == "") ]]; then
-		read -e -p "Swap Size [2G] : " swap_size
+		read -e -p "Swap Size [4G] : " swap_size
 		if [[ "$swap_size" == "" ]]; then
-			swap_size="2G"
+			swap_size="4G"
 		fi
 	fi    
 	read -e -p "Install Fail2ban? (Recommended) [Y/n] : " install_fail2ban
