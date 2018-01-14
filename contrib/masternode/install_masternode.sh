@@ -1,5 +1,5 @@
 #/bin/bash
-# This script  is a derivative work of the code from the following projects:
+# This script is a derivative work of the code from the following projects:
 # Galactrum - https://www.galactrum.org/
 # Innova Coin - https://innovacoin.info/
 clear
