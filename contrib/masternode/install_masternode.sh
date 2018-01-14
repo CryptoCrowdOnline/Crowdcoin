@@ -119,7 +119,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 		rpl \
 		pwgen
 		
-	
 	# Install fail2ban if needed
 	if [[ ("$install_fail2ban" == "y" || "$install_fail2ban" == "Y" || "$install_fail2ban" == "") ]]; then
 		echo && echo "Installing fail2ban..."
