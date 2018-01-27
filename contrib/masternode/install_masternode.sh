@@ -5,7 +5,6 @@
 clear
 cd ~
 echo "**********************************************************************"
-echo "* Ubuntu 16.04 is the recommended operating system for this install. *"
 echo "*                                                                    *"
 echo "* This script will install and configure your CrowdCoin masternode.  *"
 echo "*                                                                    *"
@@ -21,13 +20,10 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo && echo && echo
 sleep 3
 
-read -p "This script will install & configure a CrowdCoin Masternode.  This script is supplied 'AS IS' without any warranties and support. Do you wish to continue? (y/n)? " response
+read -p "This script will install & configure a CrowdCoin Masternode.  Do you wish to continue? (y/n)? " response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	then
-	# Check for systemd
-	systemctl --version >/dev/null 2>&1 || { echo "Are you using Ubuntu 16.04?"  >&2; exit 1; } 
-	
 	# Gather input from user
 	read -e -p "Masternode Private Key (e.g. 7edfjLCUzGczZi3JQw8GHp434R9kNY33eFyMGeKRymkB56G4324h) : " key
 	if [[ "$key" == "" ]]; then
