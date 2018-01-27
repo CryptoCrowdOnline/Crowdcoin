@@ -12,12 +12,6 @@ echo "* This script is provided 'AS IS' without any warranties or support. *"
 echo "*                                                                    *"
 echo "**********************************************************************"
 echo && echo && echo
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-echo "!                                              !"
-echo "! Make sure you double check before continuing !"
-echo "!                                              !"
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-echo && echo && echo
 sleep 3
 
 read -p "This script will install & configure a CrowdCoin Masternode.  Do you wish to continue? (y/n)? " response
