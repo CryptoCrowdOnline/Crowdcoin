@@ -162,7 +162,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 	rpcuser=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
 	rpcpass=`pwgen -1 20 -n`
 	cd /root/.crowdcoincore 
-	echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}\nrpcallowip=127.0.0.1\nrpcthreads=8\nlisten=1\nserver=1\ndaemon=1\nstaking=0\ndiscover=1\nexternalip=${ip}:12875\nmasternode=1\nmasternodeprivkey=${key}\naddnode=84.17.23.43:12875\naddnode=18.220.138.90:12875\naddnode=86.57.164.166:12875\naddnode=86.57.164.146:12875\naddnode=18.217.78.145:12875\naddnode=23.92.30.230:12875\naddnode=35.190.182.68:12875\naddnode=80.209.236.4:12875\naddnode=91.201.40.89:12875" > /root/.crowdcoincore/crowdcoin.conf
+	echo -e "rpcuser=${rpcuser}\nrpcpassword=${rpcpass}\nrpcallowip=127.0.0.1\nrpcport=11998\nrpcthreads=8\nlisten=1\nserver=1\ndaemon=1\nstaking=0\ndiscover=1\nexternalip=${ip}:12875\nmasternode=1\nmasternodeprivkey=${key}\naddnode=84.17.23.43:12875\naddnode=18.220.138.90:12875\naddnode=86.57.164.166:12875\naddnode=86.57.164.146:12875\naddnode=18.217.78.145:12875\naddnode=23.92.30.230:12875\naddnode=35.190.182.68:12875\naddnode=80.209.236.4:12875\naddnode=91.201.40.89:12875" > /root/.crowdcoincore/crowdcoin.conf
 	
 	# Download and install sentinel
 	echo && echo "Installing Sentinel..."
