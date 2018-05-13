@@ -14,6 +14,8 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <string> // added LP
+
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments mnpayments;
 
@@ -267,6 +269,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
     txoutMasternodeRet = CTxOut();
 
     CScript payee;
+    CScript devpayee;
 
     if(!mnpayments.GetBlockPayee(nBlockHeight, payee)) {
         // no masternode detected...
@@ -279,16 +282,25 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
         }
         // fill payee with locally calculated winner and hope for the best
         payee = GetScriptForDestination(winningNode->pubKeyCollateralAddress.GetID());
+        //devpayee = getting the davpeyee
+        devpayee =
+
     }
 
     // GET MASTERNODE PAYMENT VARIABLES SETUP
     CAmount masternodePayment = GetMasternodePayment(nBlockHeight, blockReward);
 
+    // GET DEV PAYMENT VARIABLE SETUP
+    CAmount devPayment = GetMasternodePayment(nBlockHeight, blockReward);
+
     // split reward between miner ...
-    txNew.vout[0].nValue -= masternodePayment;
+    txNew.vout[0].nValue -= masternodePayment + devPayment;
     // ... and masternode
     txoutMasternodeRet = CTxOut(masternodePayment, payee);
     txNew.vout.push_back(txoutMasternodeRet);
+    // LP .. and the dev team
+    txoutDevRet = CTxOut(devPayment, DEVADDRESS);
+    txNew.vout.push_back(txoutDevRet);
 
     CTxDestination address1;
     ExtractDestination(payee, address1);

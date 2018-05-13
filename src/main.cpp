@@ -1749,7 +1749,7 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
 
     // yearly decline of production by 10% per year, projected 136m coins max by year 2050+.
     for (int i = consensusParams.nSubsidyHalvingInterval; i <= nPrevHeight; i += consensusParams.nSubsidyHalvingInterval) {
-        nSubsidy -= nSubsidy/2;
+        nSubsidy -= nSubsidy/2; //LP halving
     }
 
     return fSuperblockPartOnly ? 0 : nSubsidy;
@@ -1757,7 +1757,12 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
 
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
 {
-    return blockValue/2;
+    return blockValue*0.4;
+}
+// added for dev team payment
+CAmount GetDevPayment(int nHeight, CAmount blockValue)
+{
+    return blockValue*0.3;
 }
 
 bool IsInitialBlockDownload()
