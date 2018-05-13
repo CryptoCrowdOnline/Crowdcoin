@@ -282,8 +282,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
         }
         // fill payee with locally calculated winner and hope for the best
         payee = GetScriptForDestination(winningNode->pubKeyCollateralAddress.GetID());
-        //devpayee = getting the davpeyee
-        devpayee =
+        //incapsualation of DEV TEAM ADDRESS
+        devpayee = GetScriptForDestination(DEVADDRESS);
 
     }
 
@@ -299,7 +299,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
     txoutMasternodeRet = CTxOut(masternodePayment, payee);
     txNew.vout.push_back(txoutMasternodeRet);
     // LP .. and the dev team
-    txoutDevRet = CTxOut(devPayment, DEVADDRESS);
+    txoutDevRet = CTxOut(devPayment, devpayee);
     txNew.vout.push_back(txoutDevRet);
 
     CTxDestination address1;
