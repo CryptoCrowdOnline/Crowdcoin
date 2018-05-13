@@ -10,6 +10,7 @@
 #include "net.h"
 #include "spork.h"
 #include "timedata.h"
+#include <string>
 
 class CMasternode;
 class CMasternodeBroadcast;
