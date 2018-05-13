@@ -92,7 +92,7 @@ public:
         consensus.BIP34Height = 227931; // FIX
         consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8"); // FIX
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
-        consensus.nPowTargetTimespan = 30 * 2 * 60; // Crowdcoin: 1 hour, 30 blocks
+        consensus.nPowTargetTimespan = 7 * 24 * 30 * 2 * 60; // Crowdcoin: 1 hour, 30 blocks
         consensus.nPowTargetSpacing = 2 * 60; // Crowdcoin: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -167,9 +167,10 @@ public:
 			(1000, uint256S("0x0000000000cc4284e6b5ad555b8c8a61959877bf653c4db4e8d86459a55505ca"))
 			(6000, uint256S("0x000000000214e1ef102d5e6e8761b31b55d492c9de45f72a5dea24d13ad2d597"))
 			(15000, uint256S("0x0000000001d1792a049f1d8c7eaf5c3514e41920731fbbc3f52371cf0252a948"))
-			(20147, uint256S("0x0000000000eb04381ee1cb7cbee2919050f298881196373bd81f5d9be55d8eba")),
-			1514485967,    // * UNIX timestamp of last checkpoint block
-			30252,        // * total number of transactions between genesis and last checkpoint
+			(20147, uint256S("0x0000000000eb04381ee1cb7cbee2919050f298881196373bd81f5d9be55d8eba"))
+            (112427,uint256S("0x0000000004e7b1791d4c325f0cf9bec56c19fc421616ffe836c13d4090db8dcb")),
+            1526211068,    // * UNIX timestamp of last checkpoint block
+            112427,        // * total number of transactions between genesis and last checkpoint
 					   //   (the tx=... number in the SetBestChain debug.log lines)
 			2800           // * estimated number of transactions per day after checkpoint
 		};
