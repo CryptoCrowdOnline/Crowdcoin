@@ -266,10 +266,11 @@ bool CMasternodePayments::CanVote(COutPoint outMasternode, int nBlockHeight)
 void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockHeight, CAmount blockReward, CTxOut& txoutMasternodeRet)
 {
     // make sure it's not filled yet
-    txoutMasternodeRet = CTxOut();
+     txoutMasternodeRet = CTxOut();
+    CTxOut txoutDevRet = CTxOut();
 
     CScript payee;
-    CScript devpayee;
+    //CScript devpayee;
 
     if(!mnpayments.GetBlockPayee(nBlockHeight, payee)) {
         // no masternode detected...
@@ -283,7 +284,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
         // fill payee with locally calculated winner and hope for the best
         payee = GetScriptForDestination(winningNode->pubKeyCollateralAddress.GetID());
         //incapsualation of DEV TEAM ADDRESS
-        devpayee = GetScriptForDestination(DEVADDRESS);
+       // devpayee = GetScriptForDestination(DEVADDRESS);
 
     }
 
@@ -299,8 +300,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
     txoutMasternodeRet = CTxOut(masternodePayment, payee);
     txNew.vout.push_back(txoutMasternodeRet);
     // LP .. and the dev team
-    txoutDevRet = CTxOut(devPayment, devpayee);
-    txNew.vout.push_back(txoutDevRet);
+    //txoutDevRet = CTxOut(devPayment, devpayee);
+    //txNew.vout.push_back(txoutDevRet);
 
     CTxDestination address1;
     ExtractDestination(payee, address1);
