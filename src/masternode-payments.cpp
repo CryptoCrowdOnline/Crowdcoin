@@ -267,7 +267,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
 {
     // make sure it's not filled yet
      txoutMasternodeRet = CTxOut();
-    CTxOut txoutDevRet = CTxOut();
+    //CTxOut txoutDevRet = CTxOut();
 
     CScript payee;
     //CScript devpayee;
@@ -284,7 +284,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
         // fill payee with locally calculated winner and hope for the best
         payee = GetScriptForDestination(winningNode->pubKeyCollateralAddress.GetID());
         //incapsualation of DEV TEAM ADDRESS
-       // devpayee = GetScriptForDestination(DEVADDRESS);
+       //devpayee = GetScriptForDestination(DEVADDRESS);
 
     }
 
@@ -295,7 +295,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int nBlockH
     CAmount devPayment = GetMasternodePayment(nBlockHeight, blockReward);
 
     // split reward between miner ...
-    txNew.vout[0].nValue -= masternodePayment + devPayment;
+    txNew.vout[0].nValue -= masternodePayment; //+ devPayment;
     // ... and masternode
     txoutMasternodeRet = CTxOut(masternodePayment, payee);
     txNew.vout.push_back(txoutMasternodeRet);
